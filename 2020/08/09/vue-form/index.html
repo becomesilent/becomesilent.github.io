@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="yanm1ng&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      vue-form | 大白的博客
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+    
+<script src="/js/gitment.js"></script>
+
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+<meta name="generator" content="Hexo 5.0.2"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>大白的博客</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">资源</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">标签</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">项目</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/Downloads/" class="item-link">资源下载</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">联系我</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">资源</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">标签</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">项目</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/Downloads/" class="menu-link">资源下载</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">联系我</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>vue-form</h2>
+  <p class="post-date">2020-08-09</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>使用vue写一个表单组件，用到了 <strong>inject</strong>、<strong>provide</strong>、<strong>attrs</strong>、<strong>async-validator</strong></p>
+<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;!--v-model 展开后--&gt;</span><br><span class="line">        &lt;!--&lt;kInput :value&#x3D;&quot;foo&quot; @input&#x3D;&quot;foo&#x3D;$event&quot;&gt;&lt;&#x2F;kInput&gt;--&gt;</span><br><span class="line">        &lt;kForm :model&#x3D;&quot;model&quot; :rules&#x3D;&quot;rules&quot; ref&#x3D;&quot;form&quot;&gt;</span><br><span class="line">            &lt;kFormItem label&#x3D;&quot;账号&quot; prop&#x3D;&quot;username&quot;&gt;</span><br><span class="line">                &lt;kInput v-model&#x3D;&quot;model.username&quot; placeholder&#x3D;&quot;请输入密码&quot;&gt;&lt;&#x2F;kInput&gt;</span><br><span class="line">            &lt;&#x2F;kFormItem&gt;</span><br><span class="line">            &lt;kFormItem label&#x3D;&quot;密码&quot; prop&#x3D;&quot;password&quot;&gt;</span><br><span class="line">                &lt;kInput v-model&#x3D;&quot;model.password&quot; type&#x3D;&quot;password&quot; placeholder&#x3D;&quot;请输入密码&quot;&gt;&lt;&#x2F;kInput&gt;</span><br><span class="line">            &lt;&#x2F;kFormItem&gt;</span><br><span class="line">            &lt;kFormItem label&#x3D;&quot;密码&quot; prop&#x3D;&quot;password&quot;&gt;</span><br><span class="line">                &lt;kInput v-model&#x3D;&quot;model.password&quot; type&#x3D;&quot;password&quot; placeholder&#x3D;&quot;请输入密码&quot;&gt;&lt;&#x2F;kInput&gt;</span><br><span class="line">            &lt;&#x2F;kFormItem&gt;</span><br><span class="line">            &lt;kFormItem&gt;</span><br><span class="line">                &lt;button @click&#x3D;&quot;onLogin&quot;&gt;登录&lt;&#x2F;button&gt;</span><br><span class="line">            &lt;&#x2F;kFormItem&gt;</span><br><span class="line">        &lt;&#x2F;kForm&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    import kInput from &#39;@&#x2F;components&#x2F;kInput.vue&#39;</span><br><span class="line">    import kFormItem from  &#39;@&#x2F;components&#x2F;kFormItem.vue&#39;</span><br><span class="line">    import kForm from  &#39;@&#x2F;components&#x2F;kForm.vue&#39;</span><br><span class="line">    export default &#123;</span><br><span class="line">        name: &quot;home&quot;,</span><br><span class="line">        data() &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                foo: &#39;value&#39;,</span><br><span class="line">                password:&#39;&#39;,</span><br><span class="line">                model:&#123;</span><br><span class="line">                    username: &#39;&#39;,</span><br><span class="line">                    password:&#39;&#39;</span><br><span class="line">                &#125;,</span><br><span class="line">                rules:&#123;</span><br><span class="line">                    username: [&#123;required: true, message:&#39;用户名为必填项&#39;&#125;],</span><br><span class="line">                    password: [&#123;required: true, message:&#39;密码为必填项&#39;&#125;],</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        components:&#123;</span><br><span class="line">            kForm,</span><br><span class="line">            kInput,</span><br><span class="line">            kFormItem</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            onLogin() &#123;</span><br><span class="line">                this.$refs.form.validate(valid &#x3D;&gt; &#123;</span><br><span class="line">                    if(valid)&#123;</span><br><span class="line">                        alert(&#39;校验成功，登录！&#39;)</span><br><span class="line">                    &#125;else&#123;</span><br><span class="line">                        alert(&#39;校验失败，请重试！&#39;)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="kInput"><a href="#kInput" class="headerlink" title="kInput"></a>kInput</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;input v-bind&#x3D;&quot;$attrs&quot; :type&#x3D;&quot;type&quot; :value&#x3D;&quot;value&quot; @input&#x3D;&quot;onInput&quot;&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    export default &#123;</span><br><span class="line">        name: &quot;kInput&quot;,</span><br><span class="line">        props:&#123;</span><br><span class="line">            value:&#123;</span><br><span class="line">                type:String,</span><br><span class="line">                default:&#39;&#39;</span><br><span class="line">            &#125;,</span><br><span class="line">            type:&#123;</span><br><span class="line">                type:String,</span><br><span class="line">                default: &#39;text&#39;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            onInput(e) &#123;</span><br><span class="line">                this.$emit(&#39;input&#39;,e.target.value)</span><br><span class="line"></span><br><span class="line">                &#x2F;&#x2F; 值发生变化的时候就是需要校验的时候</span><br><span class="line">                &#x2F;&#x2F; 事件派发   谁派发谁监听</span><br><span class="line">                this.$parent.$emit(&#39;validate&#39;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">    input&#123;</span><br><span class="line">        display: inline-block;</span><br><span class="line">        margin: 0 auto;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="kFormItem-使用了一个校验库-npm-i-async-validator-S"><a href="#kFormItem-使用了一个校验库-npm-i-async-validator-S" class="headerlink" title="kFormItem  使用了一个校验库  npm i async-validator -S"></a>kFormItem  使用了一个校验库  npm i async-validator -S</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;!--label标签--&gt;</span><br><span class="line">        &lt;label v-if&#x3D;&quot;label&quot;&gt;&#123;&#123;label&#125;&#125;：&lt;&#x2F;label&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- 容器，放插槽 --&gt;</span><br><span class="line">        &lt;slot&gt;&lt;&#x2F;slot&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!--错误信息的展示--&gt;</span><br><span class="line">        &lt;p v-if&#x3D;&quot;error&quot; class&#x3D;&quot;error&quot;&gt;&#123;&#123;error&#125;&#125;&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    import Schaema from &#39;async-validator&#39;</span><br><span class="line"></span><br><span class="line">    export default &#123;</span><br><span class="line">        name: &quot;kFormItem&quot;,</span><br><span class="line">        data() &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                error: &#39;&#39;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        props: &#123;</span><br><span class="line">            label: &#123;</span><br><span class="line">                type: String,</span><br><span class="line">                default: &#39;&#39;</span><br><span class="line">            &#125;,</span><br><span class="line">            prop: &#123;</span><br><span class="line">                type: String,</span><br><span class="line">                default: &#39;&#39;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        inject: [&#39;form&#39;],</span><br><span class="line">        mounted() &#123;</span><br><span class="line">            &#x2F;&#x2F; 监听校验事件</span><br><span class="line">            this.$on(&#39;validate&#39;, () &#x3D;&gt; &#123;</span><br><span class="line">                this.validate()</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            validate() &#123;</span><br><span class="line">                &#x2F;&#x2F; 执行校验</span><br><span class="line">                &#x2F;&#x2F; 1. 获取值和校验规则</span><br><span class="line">                const rules &#x3D; this.form.rules[this.prop]</span><br><span class="line">                const value &#x3D; this.form.model[this.prop]</span><br><span class="line">                &#x2F;&#x2F; 2. 执行校验</span><br><span class="line">                &#x2F;&#x2F; 使用官方校验库  npm i async-validator -S</span><br><span class="line"></span><br><span class="line">                &#x2F;&#x2F; 创建描述对象</span><br><span class="line">                const descriptor &#x3D; &#123;[this.prop]: rules&#125;</span><br><span class="line">                &#x2F;&#x2F; 创建校验器</span><br><span class="line">                const validator &#x3D; new Schaema(descriptor)</span><br><span class="line">                &#x2F;&#x2F; 执行结果</span><br><span class="line">                return validator.validate(&#123;[this.prop]: value&#125;, errors &#x3D;&gt; &#123;</span><br><span class="line">                    if (errors) &#123;</span><br><span class="line">                        this.error &#x3D; errors[0].message</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        this.error &#x3D; &#39;&#39;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#x2F;&#x2F; inject:&#123;</span><br><span class="line">        &#x2F;&#x2F;     form2:&#39;form&#39;,</span><br><span class="line">        &#x2F;&#x2F; &#125;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; inject:&#123;</span><br><span class="line">        &#x2F;&#x2F;     form2:&#123;</span><br><span class="line">        &#x2F;&#x2F;         from:&#39;from&#39;,</span><br><span class="line">        &#x2F;&#x2F;         default:&#123;&#125;</span><br><span class="line">        &#x2F;&#x2F;     &#125;</span><br><span class="line">        &#x2F;&#x2F; &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">    .error &#123;</span><br><span class="line">        color: red;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="kForm"><a href="#kForm" class="headerlink" title="kForm"></a>kForm</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;!-- 容器 --&gt;</span><br><span class="line">        &lt;!--存储值载体--&gt;</span><br><span class="line">        &lt;slot&gt;&lt;&#x2F;slot&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    export default &#123;</span><br><span class="line">        name: &quot;kForm&quot;,</span><br><span class="line">        props: &#123;</span><br><span class="line">            &#x2F;&#x2F; 数据模型</span><br><span class="line">            model: &#123;</span><br><span class="line">                type: Object,</span><br><span class="line">                required: true</span><br><span class="line">            &#125;,</span><br><span class="line">            rules:&#123;</span><br><span class="line">                type:Object</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#x2F;&#x2F; 传递下去的值不是响应式的， 如果传递下去的对象时响应式的则还可以是响应式的</span><br><span class="line">        provide()&#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                &#x2F;&#x2F; foo:&#39;aaa&#39; &#x2F;&#x2F; 基本类型</span><br><span class="line">                &#x2F;&#x2F; model: this.model    &#x2F;&#x2F; 引用类型</span><br><span class="line">                form: this      &#x2F;&#x2F; 直接把当前的组件实列传递下去</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            validate(cb) &#123;</span><br><span class="line">                &#x2F;&#x2F; 遍历肚子里的所有formitem执行他们的validate方法</span><br><span class="line">                &#x2F;&#x2F; 全部通过才算过</span><br><span class="line"></span><br><span class="line">                const tasks &#x3D; this.$children</span><br><span class="line">                    .filter(item&#x3D;&gt;item.prop)</span><br><span class="line">                    .map(item&#x3D;&gt;item.validate())</span><br><span class="line">                &#x2F;&#x2F; 统一判断</span><br><span class="line">                Promise.all(tasks).then(() &#x3D;&gt; cb(true)).catch(()&#x3D;&gt;cb(false))</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#vue-form" >
+    <span class="tag-code">vue-form</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2020/08/09/Vue%E5%AD%A6%E4%B9%A0%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/">
+        <span class="nav-arrow">← </span>
+        
+          Vue组件通信
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2020/08/10/vue-%E5%BC%B9%E6%A1%86/">
+        
+          vue-弹框
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-nav-text">简介</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-nav-text">使用方式</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#kInput"><span class="toc-nav-text">kInput</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#kFormItem-%E4%BD%BF%E7%94%A8%E4%BA%86%E4%B8%80%E4%B8%AA%E6%A0%A1%E9%AA%8C%E5%BA%93-npm-i-async-validator-S"><span class="toc-nav-text">kFormItem  使用了一个校验库  npm i async-validator -S</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#kForm"><span class="toc-nav-text">kForm</span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'https://becomesilent.github.io/2020/08/09/vue-form/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+  <script>
+    var gitmentConfig = "yanm1ng";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "vue-form",
+        owner: "yanm1ng",
+        repo: "yanm1ng.github.io",
+        oauth: {
+          client_id: "0f87e490e00ee3fd87ef",
+          client_secret: "4a9d2b148e7971c2201ad12131ce8bf8159ccd2e"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  </script>
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>
